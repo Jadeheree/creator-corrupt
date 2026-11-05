@@ -309,6 +309,68 @@ document.querySelectorAll('.avatar[data-mc]').forEach(el => {
   check();
 })();
 
+// Live-melding: als Bintje of Jade live is op Twitch, verschijnt bovenaan een balk met link.
+// Gebruikt decapi.me (gratis, geen sleutel nodig). Elke 2 minuten opnieuw gecontroleerd.
+(function liveBar() {
+  const header = document.querySelector('.top');
+  if (!header) return;
+  const CHANNELS = [
+    { naam: 'bintje__', url: 'https://www.twitch.tv/bintje__' },
+    { naam: 'jadeheree', url: 'https://www.twitch.tv/jadeheree' }
+  ];
+  let closed = false;
+  try { closed = sessionStorage.getItem('cc-live-closed') === '1'; } catch {}
+
+  const bar = document.createElement('div');
+  bar.className = 'live-bar';
+  bar.hidden = true;
+  bar.setAttribute('role', 'status');
+  const inner = document.createElement('div');
+  inner.className = 'wrap live-inner';
+  const links = document.createElement('div');
+  links.className = 'live-links';
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'live-close';
+  close.setAttribute('aria-label', 'Live-melding sluiten');
+  close.textContent = '×';
+  close.addEventListener('click', () => {
+    bar.hidden = true; closed = true;
+    try { sessionStorage.setItem('cc-live-closed', '1'); } catch {}
+  });
+  inner.append(links, close);
+  bar.appendChild(inner);
+  header.appendChild(bar);
+
+  // Live als het antwoord een speeltijd is ("1 hour, 5 minutes"), niet "... is offline" of een foutmelding
+  const isLive = text => /\b\d+\s+(second|minute|hour|day)s?\b/i.test(text) && !/offline/i.test(text);
+
+  async function check() {
+    const results = await Promise.all(CHANNELS.map(async ch => {
+      try {
+        const res = await fetch(`https://decapi.me/twitch/uptime/${ch.naam}`, { cache: 'no-store' });
+        return res.ok && isLive(await res.text()) ? ch : null;
+      } catch { return null; }
+    }));
+    const live = results.filter(Boolean);
+    links.replaceChildren(...live.map(ch => {
+      const a = document.createElement('a');
+      a.href = ch.url; a.target = '_blank'; a.rel = 'noopener';
+      a.innerHTML = '<span class="live-dot" aria-hidden="true"></span><b>LIVE</b>';
+      const t = document.createElement('span');
+      t.textContent = `${ch.naam} is nu live op Twitch`;
+      const go = document.createElement('span');
+      go.className = 'live-go';
+      go.textContent = 'Kijk mee →';
+      a.append(t, go);
+      return a;
+    }));
+    bar.hidden = closed || live.length === 0;
+  }
+  check();
+  setInterval(check, 120000);
+})();
+
 // Uitlegvideo: toont de YouTube-video als data-youtube is ingevuld, anders blijft de placeholder staan
 document.querySelectorAll('.video[data-youtube]').forEach(el => {
   const id = el.dataset.youtube.trim();

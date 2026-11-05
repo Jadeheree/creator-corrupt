@@ -61,6 +61,23 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   .nav .nav-cta{margin:14px 0 0;text-align:center}
 }
 
+/* Live-balk onder het menu, alleen zichtbaar als iemand live is */
+.live-bar{background:linear-gradient(90deg,rgba(145,70,255,.95),rgba(110,40,200,.95));border-top:1px solid rgba(255,255,255,.15);box-shadow:0 6px 24px rgba(145,70,255,.35);animation:liveIn .4s ease}
+.live-bar[hidden]{display:none}
+@keyframes liveIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.live-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px}
+.live-links{display:flex;flex-wrap:wrap;gap:6px 22px;padding:6px 0}
+.live-links a{display:inline-flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:600 .95rem var(--body)}
+.live-links a b{font:800 .75rem var(--mono);letter-spacing:.12em;padding:2px 6px;background:#e91916;color:#fff}
+.live-dot{width:9px;height:9px;border-radius:50%;background:#ff3b3b;box-shadow:0 0 0 0 rgba(255,59,59,.7);animation:livePulse 1.6s infinite}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(255,59,59,.7)}70%{box-shadow:0 0 0 9px rgba(255,59,59,0)}100%{box-shadow:0 0 0 0 rgba(255,59,59,0)}}
+.live-go{padding:3px 10px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.3);transition:background .2s}
+.live-links a:hover .live-go{background:rgba(0,0,0,.45)}
+.live-close{flex:none;width:30px;height:30px;border:0;background:none;color:#fff;font:600 1.3rem var(--body);cursor:pointer;opacity:.8}
+.live-close:hover{opacity:1}
+@media(max-width:560px){.live-links a{font-size:.85rem;gap:8px}.live-go{display:none}}
+@media(prefers-reduced-motion:reduce){.live-bar,.live-dot{animation:none}}
+
 /* Knoppen */
 .btn,.nav .nav-cta{display:inline-flex;align-items:center;justify-content:center;font:700 1rem var(--body);color:#fff;text-decoration:none;cursor:pointer;
   background:var(--purple-700);border:2px solid #000;padding:12px 24px;
@@ -201,7 +218,7 @@ main>.section::before{content:"";position:absolute;left:0;right:0;top:-1px;heigh
 @media(prefers-reduced-motion:reduce){.music-btn .bars i{animation:none!important}}
 
 /* Pop-ups met grapjes */
-.toast{position:fixed;left:20px;bottom:20px;z-index:50;display:flex;gap:14px;align-items:center;width:min(380px,calc(100vw - 32px));padding:14px 40px 14px 14px;
+.toast{position:fixed;right:20px;bottom:76px;z-index:50;display:flex;gap:14px;align-items:center;width:min(380px,calc(100vw - 32px));padding:14px 40px 14px 14px;
   background:rgba(12,8,20,.97);border:1px solid var(--line-2);border-left:3px solid var(--purple-500);box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 30px rgba(139,77,255,.25);
   transform:translateY(140%);opacity:0;transition:transform .45s cubic-bezier(.2,.9,.3,1.2),opacity .3s}
 .toast.show{transform:none;opacity:1}
@@ -214,7 +231,7 @@ main>.section::before{content:"";position:absolute;left:0;right:0;top:-1px;heigh
 .toast-close:hover{color:var(--ink)}
 .toast-mute{display:inline-block;margin-top:6px;padding:0;border:0;background:none;font:500 .8rem var(--body);color:var(--muted);text-decoration:underline;cursor:pointer}
 .toast-mute:hover{color:var(--ink)}
-@media(max-width:560px){.toast{left:16px;bottom:16px}}
+@media(max-width:560px){.toast{right:16px;bottom:72px}}
 @media(prefers-reduced-motion:reduce){.toast{transition:opacity .2s}}
 
 .concept-twist{margin:28px 0 0;padding-left:18px;border-left:3px solid #e0506e;font-size:1.1rem;color:var(--text);max-width:70ch}
