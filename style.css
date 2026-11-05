@@ -124,7 +124,9 @@ main>.section::before{content:"";position:absolute;left:0;right:0;top:-1px;heigh
   box-shadow:inset 0 0 0 3px var(--gold-hi),inset 0 0 0 6px var(--gold),inset 0 0 0 9px var(--gold-lo),0 0 0 3px #2b1a05,0 14px 40px rgba(255,170,40,.16);transition:transform .2s,box-shadow .2s}
 .member:hover .frame{transform:translateY(-4px);box-shadow:inset 0 0 0 3px var(--gold-hi),inset 0 0 0 6px var(--gold),inset 0 0 0 9px var(--gold-lo),0 0 0 3px #2b1a05,0 18px 50px rgba(255,170,40,.3)}
 .avatar{aspect-ratio:1;display:grid;place-items:center;background:radial-gradient(circle at 50% 45%,#ffd84a,#f5a11a 75%);box-shadow:inset 0 0 0 3px var(--gold-lo),inset 0 0 30px rgba(140,70,0,.35)}
-.avatar img,.avatar canvas{width:46%;height:auto;image-rendering:pixelated;display:block;box-shadow:6px 6px 0 rgba(90,45,0,.35)}
+.avatar-photo{position:relative;overflow:hidden}
+.avatar-photo img{position:absolute;inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);object-fit:cover;object-position:50% 30%}
+.avatar:not(.avatar-photo) img,.avatar canvas{width:46%;height:auto;image-rendering:pixelated;display:block;box-shadow:6px 6px 0 rgba(90,45,0,.35)}
 .plaque{position:relative;margin-top:-16px;padding:3px;background:#6b4a1c;
   clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,16px 100%,0 50%)}
 .plaque span{display:block;padding:9px 30px;font:600 .95rem var(--mono);letter-spacing:.08em;color:#3a2a10;background:#e6d19d var(--tex-parchment,none);background-size:40px 40px;image-rendering:pixelated;

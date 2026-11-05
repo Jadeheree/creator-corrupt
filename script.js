@@ -163,7 +163,7 @@ function pixelHead(name) {
   return c;
 }
 
-document.querySelectorAll('.avatar').forEach(el => {
+document.querySelectorAll('.avatar[data-mc]').forEach(el => {
   const mc = el.dataset.mc.trim();
   if (mc) {
     const img = new Image();
