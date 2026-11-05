@@ -406,6 +406,38 @@ main>.section.more{padding:44px 0}
 .community{margin-top:80px;padding-top:56px;border-top:1px solid var(--line)}
 .community-empty{padding:22px;color:var(--muted);background:rgba(14,9,22,.7);border:1px dashed var(--line-2)}
 
+/* Uitlijning: kleine correcties */
+/* Hero-label: de drie stukjes breken als geheel af, met een punt ertussen */
+.hero-eyebrow{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 0}
+.hero-eyebrow span{white-space:nowrap}
+.hero-eyebrow span+span::before{content:"\00b7";margin:0 .7em}
+@media(max-width:560px){
+  .hero-eyebrow{font-size:.8rem;letter-spacing:.1em}
+  .hero-eyebrow span:first-child{flex-basis:100%;text-align:center}
+  .hero-eyebrow span:nth-child(2)::before{content:none}
+}
+/* Teamkaarten: onderschriften beginnen op dezelfde hoogte */
+.team{align-items:flex-start}
+/* Lees verder: een losse laatste knop op mobiel vult de hele breedte */
+@media(max-width:560px){.more-links a:last-child:nth-child(odd){grid-column:1/-1}}
+/* Vinkjes: tekst blijft één nette alinea naast het vakje */
+.check span{flex:1;min-width:0}
+/* Deelnemers: op mobiel twee kaarten naast elkaar */
+@media(max-width:560px){
+  .cast{grid-template-columns:1fr 1fr;gap:12px}
+  .cast-card{padding:16px 10px 14px}
+  .cast-head{width:72px;height:72px;margin-bottom:12px}
+  .cast-head img,.cast-head canvas{width:54px;height:54px}
+  .cast-card.mystery .cast-head{font-size:2rem}
+  .cast-card h3{font-size:.92rem}
+  .cast-links{gap:6px}
+  .cast-btn{padding:6px 8px;font-size:.75rem}
+  .pager{width:100%;justify-content:space-between}
+  .pager button{flex:1;min-width:0}
+}
+/* Regels: downloadknop op mobiel over de volle breedte */
+@media(max-width:560px){.download{flex-direction:row}.download .btn{width:100%;justify-content:center}}
+
 /* Footer met organisatoren */
 .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding:44px 0 32px}
 @media(max-width:760px){
