@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deelnemers - Creator Corrupt</title>
+<meta name="description" content="De creators die meedoen aan Creator Corrupt, met links naar hun Twitch en YouTube.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cave" aria-hidden="true"></canvas>
+<canvas id="sparks" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap bar">
+    <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="index.html">Home</a>
+      <a href="speluitleg.html">Speluitleg</a>
+      <a href="stemmen.html">Stemmen</a>
+      <a href="deelnemers.html" aria-current="page">Deelnemers</a>
+      <a href="regels.html">Regels</a>
+      <a href="aanmelden.html" class="nav-cta">Aanmelden</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">Deelnemers</p>
+      <h2>De creators</h2>
+      <p>Deze creators doen mee aan Creator Corrupt. Wie van hen corrupted is? Dat weet niemand.</p>
+    </header>
+
+    <!-- De kaarten worden gemaakt uit deelnemers.js -->
+    <div class="cast" id="cast"></div>
+    <p class="cast-note" id="cast-note" hidden>De deelnemers worden binnenkort bekendgemaakt.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+        <p>Een Minecraft-event van drie weken voor Nederlandstalige creators.</p>
+      </div>
+      <div class="foot-person">
+        <h4>Bintje</h4>
+        <span>Maker van het concept &middot; Organisatie</span>
+        <div class="socials">
+          <a href="https://www.twitch.tv/bintje__" target="_blank" rel="noopener">Twitch</a>
+          <a href="https://www.tiktok.com/@bintje__" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+      <div class="foot-person">
+        <h4>Jade</h4>
+        <span>Organisatie</span>
+        <div class="socials">
+          <a href="https://www.twitch.tv/jadeheree" target="_blank" rel="noopener">Twitch</a>
+          <a href="https://www.tiktok.com/@jadedhere" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-inner">
+      <span>&copy; <span id="year">2026</span> Creator Corrupt</span>
+      <span>Niet verbonden aan Mojang of Microsoft.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="deelnemers.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

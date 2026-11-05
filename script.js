@@ -1,3 +1,5 @@
+document.documentElement.classList.add('js');
+
 // Kleine seeded random, zodat texturen en avatars elke keer hetzelfde zijn
 function rng(seed) {
   let h = 2166136261;
@@ -175,6 +177,97 @@ document.querySelectorAll('.avatar[data-mc]').forEach(el => {
     el.appendChild(pixelHead(el.dataset.name || 'speler'));
   }
 });
+
+// Deelnemerspagina: kaarten uit deelnemers.js, of mysterie-kaarten zolang de lijst leeg is
+(function renderCast() {
+  const cast = document.getElementById('cast');
+  if (!cast) return;
+  const list = Array.isArray(window.DEELNEMERS) ? window.DEELNEMERS : [];
+  const safeUrl = u => (typeof u === 'string' && /^https:\/\//i.test(u.trim())) ? u.trim() : '';
+
+  const button = (kind, label, url) => {
+    const a = document.createElement('a');
+    a.className = 'cast-btn ' + kind;
+    a.textContent = label;
+    if (url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
+    else { a.setAttribute('aria-disabled', 'true'); a.setAttribute('tabindex', '-1'); }
+    return a;
+  };
+
+  const card = d => {
+    const el = document.createElement('article');
+    el.className = 'cast-card reveal' + (d ? '' : ' mystery');
+    const head = document.createElement('div');
+    head.className = 'cast-head';
+    const h3 = document.createElement('h3');
+    const sub = document.createElement('p');
+    sub.className = 'cast-sub';
+    const links = document.createElement('div');
+    links.className = 'cast-links';
+
+    if (d) {
+      const mc = (d.minecraft || '').trim();
+      if (/^[A-Za-z0-9_]{3,16}$/.test(mc)) {
+        const img = new Image();
+        img.alt = '';
+        img.src = `https://mc-heads.net/avatar/${mc}/72`;
+        img.onerror = () => img.replaceWith(pixelHead(mc));
+        head.appendChild(img);
+      } else {
+        head.appendChild(pixelHead(d.naam || 'creator'));
+      }
+      h3.textContent = d.naam || 'Creator';
+      sub.textContent = mc ? mc : 'Creator';
+      const tw = safeUrl(d.twitch), yt = safeUrl(d.youtube);
+      if (tw) links.appendChild(button('twitch', 'Twitch', tw));
+      if (yt) links.appendChild(button('youtube', 'YouTube', yt));
+    } else {
+      head.textContent = '?';
+      h3.textContent = 'Wordt bekendgemaakt';
+      sub.textContent = 'Creator of corrupted?';
+      links.append(button('twitch', 'Twitch', ''), button('youtube', 'YouTube', ''));
+    }
+    el.append(head, h3, sub, links);
+    return el;
+  };
+
+  if (list.length) list.forEach(d => cast.appendChild(card(d)));
+  else {
+    for (let i = 0; i < 12; i++) cast.appendChild(card(null));
+    document.getElementById('cast-note').hidden = false;
+  }
+})();
+
+// Elementen met .reveal komen zacht in beeld bij het scrollen (met een klein verschil per kaart)
+(function reveal() {
+  const items = [...document.querySelectorAll('.reveal')];
+  if (!items.length) return;
+  if (reduceMotion) { items.forEach(el => el.classList.add('in')); return; }
+  let pending = items.slice(), last = 0, timer = null;
+  const check = () => {
+    const limit = innerHeight * 0.92;
+    pending = pending.filter(el => {
+      if (el.getBoundingClientRect().top > limit) return true;
+      const siblings = [...el.parentElement.children];
+      el.style.transitionDelay = (siblings.indexOf(el) % 6) * 70 + 'ms';
+      el.classList.add('in');
+      setTimeout(() => { el.style.transitionDelay = ''; }, 1200);
+      return false;
+    });
+    if (!pending.length) { removeEventListener('scroll', onScroll); removeEventListener('resize', onScroll); clearInterval(poll); }
+  };
+  // Vangnet: ook zonder scroll-events (sommige browsers/webviews) verschijnt alles
+  const poll = setInterval(check, 500);
+  // Maximaal eens per 100 ms controleren, en altijd nog één keer na het laatste scrollen
+  const onScroll = () => {
+    const now = Date.now();
+    if (now - last > 100) { last = now; check(); }
+    clearTimeout(timer); timer = setTimeout(check, 120);
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  check();
+})();
 
 // Uitlegvideo: toont de YouTube-video als data-youtube is ingevuld, anders blijft de placeholder staan
 document.querySelectorAll('.video[data-youtube]').forEach(el => {
