@@ -10,6 +10,10 @@ Beide diensten zijn gratis voor een site als deze.
 
 Aanmeldingen bekijken: Supabase > **Table Editor > aanmeldingen**. Daar kun je ze ook exporteren als CSV.
 
+`supabase.sql` maakt ook de tierlist aan: de tabel `tier_stemmen` (alle ingestuurde stemmen) en het overzicht
+`tier_resultaten` (gemiddelde per deelnemer, dit toont de site). Bezoekers kunnen alleen stemmen toevoegen.
+Let op: er is geen login, dus iemand die zijn browsergegevens wist kan opnieuw stemmen. Voor een fan-tierlist is dat meestal prima.
+
 ## 2. Website online (Vercel)
 1. Maak een account op vercel.com en log in met GitHub.
 2. Klik op **Add New > Project**, kies de repository `creator-corrupt` en klik op **Import**.

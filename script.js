@@ -224,7 +224,7 @@ document.querySelectorAll('.avatar[data-mc]').forEach(el => {
     } else {
       head.textContent = '?';
       h3.textContent = 'Wordt bekendgemaakt';
-      sub.textContent = 'Creator of corrupted?';
+      sub.hidden = true;
       links.append(button('twitch', 'Twitch', ''), button('youtube', 'YouTube', ''));
     }
     el.append(head, h3, sub, links);

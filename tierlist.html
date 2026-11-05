@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tierlist - Creator Corrupt</title>
+<meta name="description" content="Wie is corrupt? Maak je eigen tierlist van de deelnemers van Creator Corrupt en zie wat iedereen denkt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261105-5">
+</head>
+<body>
+<canvas id="cave" aria-hidden="true"></canvas>
+<canvas id="sparks" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap bar">
+    <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="index.html">Home</a>
+      <a href="speluitleg.html">Speluitleg</a>
+      <a href="stemmen.html">Stemmen</a>
+      <a href="deelnemers.html">Deelnemers</a>
+      <a href="tierlist.html" aria-current="page">Tierlist</a>
+      <a href="regels.html">Regels</a>
+      <a href="aanmelden.html" class="nav-cta">Aanmelden</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">Tierlist</p>
+      <h2>Wie is corrupt?</h2>
+      <p>Zet elke deelnemer in de rij die bij jouw gevoel past. Sleep ze met je muis, of tik op je telefoon eerst op een deelnemer en dan op een rij. Je tierlist wordt bewaard in je browser.</p>
+    </header>
+
+    <p class="cast-note" id="tl-demo" hidden>Voorbeeld: de deelnemers worden binnenkort bekendgemaakt. Insturen kan zodra ze bekend zijn.</p>
+
+    <div class="tiers" id="tiers"></div>
+
+    <div class="pool-wrap">
+      <h3 class="pool-title">Nog niet ingedeeld <span id="pool-count"></span></h3>
+      <div class="pool tier-drop" id="pool" data-tier="0" tabindex="0" aria-label="Nog niet ingedeeld"></div>
+    </div>
+
+    <div class="tl-actions">
+      <button class="btn" type="button" id="tl-send">Stem insturen</button>
+      <button class="btn btn-ghost" type="button" id="tl-image">Opslaan als afbeelding</button>
+      <button class="btn btn-ghost" type="button" id="tl-reset">Opnieuw beginnen</button>
+    </div>
+    <p class="form-msg" id="tl-msg" role="status" hidden></p>
+
+    <section class="community">
+      <header class="section-head">
+        <p class="eyebrow">Iedereen</p>
+        <h2>Wat denkt iedereen?</h2>
+        <p>Het gemiddelde van alle ingestuurde tierlists. Stuur je eigen tierlist opnieuw in, dan telt alleen je nieuwste keuze.</p>
+      </header>
+      <div id="community"></div>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+        <p>Een Minecraft-event van drie weken voor Nederlandstalige creators.</p>
+      </div>
+      <div class="foot-person">
+        <h4>Bintje</h4>
+        <span>Maker van het concept &middot; Organisatie</span>
+        <div class="socials">
+          <a href="https://www.twitch.tv/bintje__" target="_blank" rel="noopener">Twitch</a>
+          <a href="https://www.tiktok.com/@bintje__" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+      <div class="foot-person">
+        <h4>Jade</h4>
+        <span>Organisatie</span>
+        <div class="socials">
+          <a href="https://www.twitch.tv/jadeheree" target="_blank" rel="noopener">Twitch</a>
+          <a href="https://www.tiktok.com/@jadedhere" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-inner">
+      <span>&copy; <span id="year">2026</span> Creator Corrupt</span>
+      <span>Niet verbonden aan Mojang of Microsoft.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="deelnemers.js?v=20261105-5"></script>
+<script src="config.js?v=20261105-5"></script>
+<script src="script.js?v=20261105-5"></script>
+<script src="tierlist.js?v=20261105-5"></script>
+</body>
+</html>
