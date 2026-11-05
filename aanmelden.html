@@ -33,11 +33,11 @@
       <p>Wil je meedoen als creator? Vul het formulier in. Je hoort van ons via Discord.</p>
     </header>
 
-    <!--
-      Versturen staat nog uit. Zet bij data-endpoint de link van je formulierdienst
-      (bijvoorbeeld https://formspree.io/f/xxxxxxx), dan worden aanmeldingen verstuurd.
-    -->
-    <form class="form" id="aanmelden" data-endpoint="" novalidate>
+    <!-- Aanmeldingen gaan naar Supabase. Vul de sleutels in config.js in, zie SETUP.md. -->
+    <form class="form" id="aanmelden" novalidate>
+      <!-- Verborgen veld tegen spambots: mensen zien dit niet en laten het leeg -->
+      <div class="hp" aria-hidden="true"><label>Laat dit leeg <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
       <label class="field">
         <span>Naam</span>
         <input type="text" name="naam" autocomplete="name" required>
@@ -45,7 +45,7 @@
 
       <label class="field">
         <span>Minecraft Java-naam</span>
-        <input type="text" name="minecraft" autocomplete="off" required>
+        <input type="text" name="minecraft" autocomplete="off" required pattern="[A-Za-z0-9_]{3,16}" title="3 tot 16 tekens: letters, cijfers en _">
       </label>
 
       <label class="field">
@@ -66,7 +66,7 @@
       <fieldset class="checks">
         <label class="check"><input type="checkbox" name="microfoon" value="ja" required> Ik heb een verstaanbare microfoon</label>
         <label class="check"><input type="checkbox" name="camera" value="ja"> Ik heb een camera <small>(niet verplicht)</small></label>
-        <label class="check"><input type="checkbox" name="regels" value="akkoord" required> Ik heb de <a href="regels.html">regels</a> gelezen en ga akkoord</label>
+        <label class="check"><input type="checkbox" name="regels" value="akkoord" required> Ik heb de <a href="regels.html">regels en voorwaarden</a> gelezen en ga akkoord</label>
       </fieldset>
 
       <p class="form-msg" role="status" hidden></p>
@@ -83,6 +83,7 @@
   </div>
 </footer>
 
+<script src="config.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

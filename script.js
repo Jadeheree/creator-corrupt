@@ -61,6 +61,19 @@ document.querySelectorAll('.avatar').forEach(el => {
   }
 });
 
+// Uitlegvideo: toont de YouTube-video als data-youtube is ingevuld, anders blijft de placeholder staan
+document.querySelectorAll('.video[data-youtube]').forEach(el => {
+  const id = el.dataset.youtube.trim();
+  if (!/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0`;
+  iframe.title = 'Uitlegvideo Creator Corrupt';
+  iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+  iframe.allowFullscreen = true;
+  iframe.loading = 'lazy';
+  el.replaceChildren(iframe);
+});
+
 // IP kopiëren
 document.querySelectorAll('[data-copy]').forEach(btn => {
   btn.addEventListener('click', async () => {
@@ -84,27 +97,52 @@ nav.addEventListener('click', e => {
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Aanmeldformulier: controleert de velden en verstuurt naar data-endpoint (als die is ingevuld)
+// Aanmeldformulier: controleert de velden en slaat de aanmelding op in Supabase (sleutels in config.js)
 const form = document.getElementById('aanmelden');
 if (form) {
+  const cfg = window.CC_CONFIG || {};
   const msg = form.querySelector('.form-msg');
   const show = (text, error) => { msg.textContent = text; msg.classList.toggle('error', !!error); msg.hidden = false; };
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    const fields = [...form.querySelectorAll('input')];
+    const fields = [...form.querySelectorAll('input:not([name=website])')];
     fields.forEach(f => f.classList.toggle('invalid', !f.checkValidity()));
     const firstBad = fields.find(f => !f.checkValidity());
     if (firstBad) { show('Vul alle verplichte velden goed in.', true); firstBad.focus(); return; }
 
-    const endpoint = form.dataset.endpoint.trim();
-    if (!endpoint) { show('Aanmelden is nog niet geopend. Je aanmelding is niet verstuurd.'); return; }
+    // Spambot heeft het verborgen veld ingevuld: doe alsof het gelukt is
+    if (form.website.value) { form.reset(); show('Bedankt! Je aanmelding is binnen.'); return; }
+
+    if (!cfg.supabaseUrl || !cfg.supabaseAnonKey) { show('Aanmelden is nog niet geopend. Je aanmelding is niet verstuurd.'); return; }
+
+    const data = {
+      naam: form.naam.value.trim(),
+      minecraft: form.minecraft.value.trim(),
+      discord: form.discord.value.trim(),
+      email: form.email.value.trim(),
+      kanaal: form.kanaal.value.trim(),
+      microfoon: form.microfoon.checked,
+      camera: form.camera.checked,
+      voorwaarden_akkoord: form.regels.checked,
+      voorwaarden_versie: cfg.voorwaardenVersie || ''
+    };
 
     const btn = form.querySelector('button');
     btn.disabled = true;
     try {
-      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error();
+      const res = await fetch(cfg.supabaseUrl.replace(/\/$/, '') + '/rest/v1/aanmeldingen', {
+        method: 'POST',
+        headers: {
+          apikey: cfg.supabaseAnonKey,
+          Authorization: 'Bearer ' + cfg.supabaseAnonKey,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify(data)
+      });
+      if (res.status === 409) { show('Met deze Minecraft-naam of dit e-mailadres is al iemand aangemeld.', true); return; }
+      if (!res.ok) throw new Error(res.status);
       form.reset();
       show('Bedankt! Je aanmelding is binnen. We nemen contact met je op via Discord.');
     } catch {
