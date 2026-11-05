@@ -25,15 +25,9 @@ function texture(seed, colors, size = 16) {
   return c.toDataURL();
 }
 
-// Achtergrond van de hero: donker obsidiaan-achtig
-const obsidian = texture('obsidian', ['#0b090f', '#0c0a11', '#0e0b14', '#110d18', '#16101f', '#1f1530']);
+// Achtergrond achter het logo: donker obsidiaan-achtig
+const obsidian = texture('obsidian', ['#0b090f', '#0d0a12', '#100c16', '#140f1c', '#1b1327', '#261a38']);
 document.documentElement.style.setProperty('--obsidian', `url(${obsidian})`);
-
-// Paars kristalblok in de hero
-const crystal = ['#4b2280', '#5a2a9a', '#3a1a66', '#6c35b8', '#8a52d8', '#b98cff'];
-document.querySelectorAll('.cube .face').forEach((f, i) => {
-  f.setAttribute('href', texture('crystal' + i, crystal));
-});
 
 // Team-avatars: Minecraft-skin als er een naam is ingevuld, anders een gegenereerd pixelhoofd
 function pixelHead(name) {

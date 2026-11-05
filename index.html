@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Creator Corrupt</title>
-<meta name="description" content="Een Minecraft survival server met een vaste groep spelers. Lees hoe je meedoet.">
+<meta name="description" content="Creator Corrupt is een Minecraft Java SMP voor creators. Een paar spelers zijn in het geheim corrupt. Wie stem jij eruit?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,10 +17,10 @@
     <a href="#top" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav" class="nav">
-      <a href="#intro">Introductie</a>
-      <a href="#team">Team</a>
-      <a href="#uitleg">Speluitleg</a>
-      <a href="#uitleg-join" class="nav-cta">Doe mee</a>
+      <a href="index.html#intro">Introductie</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#uitleg">Speluitleg</a>
+      <a href="regels.html" class="nav-cta">Regels</a>
     </nav>
   </div>
 </header>
@@ -30,14 +30,13 @@
   <!-- INTRODUCTIE -->
   <section id="intro" class="hero">
     <div class="wrap hero-grid">
-      <div>
-        <p class="kicker">Seizoen 1 &mdash; Java &amp; Bedrock</p>
-        <h1>Bouw mee aan<br>onze wereld.</h1>
-        <p class="lead">Creator Corrupt is een survival server voor een vaste groep spelers. Geen pay-to-win, geen reset na twee weken. Je begint met niks, bouwt samen een stad op en alles wat je maakt blijft staan.</p>
+      <div class="hero-text">
+        <p class="kicker">Minecraft Java Edition &middot; SMP voor creators</p>
+        <h1>Wie van jullie is corrupt?</h1>
+        <p class="lead">Creator Corrupt is een SMP waarin een paar creators in het geheim <strong>corrupted</strong> zijn. Niemand weet wie. Je bouwt, overleeft en speelt events, en elke stemronde kiezen jullie samen wie eruit moet. Kies goed, want wie eruit wordt gestemd, is er echt uit.</p>
         <div class="ip">
           <span class="ip-label">Server IP</span>
-          <code id="ip">play.creatorcorrupt.nl</code>
-          <button class="btn btn-copy" data-copy="#ip">Kopieer</button>
+          <span class="ip-value">Volgt binnenkort</span>
         </div>
       </div>
       <div class="hero-logo">
@@ -47,10 +46,10 @@
 
     <div class="wrap">
       <ul class="stats">
-        <li><strong>1.21</strong><span>Minecraft versie</span></li>
-        <li><strong>24/7</strong><span>Online</span></li>
-        <li><strong>Whitelist</strong><span>Aanmelden via Discord</span></li>
-        <li><strong>NL / BE</strong><span>Community</span></li>
+        <li><strong>Java</strong><span>Alleen Java Edition</span></li>
+        <li><strong>14:00 &ndash; 02:00</strong><span>Openingstijden</span></li>
+        <li><strong>Max. 40</strong><span>Creators</span></li>
+        <li><strong>Wekelijks</strong><span>Een event</span></li>
       </ul>
     </div>
   </section>
@@ -59,43 +58,26 @@
   <section id="team" class="section">
     <div class="wrap">
       <header class="section-head">
-        <span class="num">02</span>
         <h2>Het team</h2>
-        <p>De mensen die de server draaiende houden. Vragen of problemen? Stuur een van ons een bericht op Discord.</p>
+        <p>Creator Corrupt wordt georganiseerd door Jade en Bintje.</p>
       </header>
 
-      <!-- Vul bij data-mc je Minecraft-gebruikersnaam in, dan verschijnt automatisch je skin. -->
-      <div class="team">
+      <!-- Vul bij data-mc de Minecraft-gebruikersnaam in, dan verschijnt automatisch de skin. -->
+      <div class="team team-duo">
         <article class="member">
           <div class="avatar" data-mc="" data-name="Jade"></div>
           <div class="member-body">
-            <span class="role role-owner">Eigenaar</span>
+            <span class="role role-owner">Organisatie</span>
             <h3>Jade</h3>
-            <p>Heeft de server opgezet en bepaalt waar het naartoe gaat. Streamt het meeste van wat er gebeurt.</p>
+            <a class="twitch" href="https://www.twitch.tv/jadeheree" target="_blank" rel="noopener">twitch.tv/jadeheree</a>
           </div>
         </article>
         <article class="member">
-          <div class="avatar" data-mc="" data-name="Teamlid 2"></div>
+          <div class="avatar" data-mc="" data-name="Bintje"></div>
           <div class="member-body">
-            <span class="role role-admin">Admin</span>
-            <h3>Naam</h3>
-            <p>Regelt plugins, back-ups en alles achter de schermen. Als iets kapot is, weet deze persoon het als eerste.</p>
-          </div>
-        </article>
-        <article class="member">
-          <div class="avatar" data-mc="" data-name="Teamlid 3"></div>
-          <div class="member-body">
-            <span class="role role-mod">Moderator</span>
-            <h3>Naam</h3>
-            <p>Houdt de chat en de wereld eerlijk. Spreek deze persoon aan bij griefing of ruzie.</p>
-          </div>
-        </article>
-        <article class="member">
-          <div class="avatar" data-mc="" data-name="Teamlid 4"></div>
-          <div class="member-body">
-            <span class="role role-build">Bouwer</span>
-            <h3>Naam</h3>
-            <p>Bouwde de spawn en de eventmaps. Hulp nodig met een project? Vraag het gerust.</p>
+            <span class="role role-owner">Organisatie</span>
+            <h3>Bintje</h3>
+            <a class="twitch" href="https://www.twitch.tv/bintje__" target="_blank" rel="noopener">twitch.tv/bintje__</a>
           </div>
         </article>
       </div>
@@ -106,59 +88,69 @@
   <section id="uitleg" class="section section-alt">
     <div class="wrap">
       <header class="section-head">
-        <span class="num">03</span>
         <h2>Speluitleg</h2>
-        <p>Nieuw op de server? Hier lees je hoe je binnenkomt en hoe het spel bij ons werkt.</p>
+        <p>Zo werkt Creator Corrupt, van de eerste dag tot de finale.</p>
       </header>
 
-      <h3 class="sub" id="uitleg-join">Zo kom je binnen</h3>
+      <h3 class="sub">Hoe een seizoen verloopt</h3>
       <ol class="steps">
         <li>
-          <h4>Meld je aan</h4>
-          <p>Join onze Discord en vul in het kanaal <code>#aanmelden</code> je Minecraft-naam in. Binnen een dag sta je op de whitelist.</p>
+          <h4>De start</h4>
+          <p>We beginnen op een zaterdagavond en spelen door tot de server sluit. Daarna gelden de vaste openingstijden van 14:00 tot 02:00.</p>
         </li>
         <li>
-          <h4>Voeg de server toe</h4>
-          <p>Open Minecraft, ga naar <em>Multiplayer</em> &rarr; <em>Server toevoegen</em> en vul <code>play.creatorcorrupt.nl</code> in.</p>
+          <h4>Overleven en bouwen</h4>
+          <p>Iedereen spawnt op een eigen, willekeurige plek op één groot eiland met alle biomes. Vanaf daar bouw je je basis op.</p>
         </li>
         <li>
-          <h4>Start bij spawn</h4>
-          <p>Je komt binnen op spawn. Pak je startkit bij het bord en loop door een van de portalen de wildernis in.</p>
+          <h4>Stemrondes</h4>
+          <p>Om de drie dagen wordt er gestemd en gaan er drie creators uit. Elke week is er een event.</p>
         </li>
         <li>
-          <h4>Claim je plek</h4>
-          <p>Gevonden waar je wil bouwen? Gebruik een gouden schep om je land te claimen, zo kan niemand anders eraan komen.</p>
+          <h4>De finale</h4>
+          <p>Wie overblijft speelt de finale. Hoe die werkt, hoor je pas als je er bent.</p>
         </li>
       </ol>
 
-      <h3 class="sub">Hoe het spel werkt</h3>
+      <h3 class="sub">Corrupted en stemmen</h3>
       <div class="rules-grid">
         <div class="tile">
-          <h4>Survival, geen shortcuts</h4>
-          <p>Gewone survival op normaal. Geen /fly, geen /tp voor spelers. Je reist zoals iedereen: lopen, paard of Nether.</p>
+          <h4>Corrupted</h4>
+          <p>Een paar creators zijn in het geheim corrupted. Je rol is geheim: je vertelt hem aan niemand, ook niet op stream.</p>
         </div>
         <div class="tile">
-          <h4>Economie</h4>
-          <p>Handel gebeurt met diamanten. In de marktwijk bij spawn kun je een eigen winkel neerzetten.</p>
+          <h4>Stemmen</h4>
+          <p>Tijdens een stemronde krijg je een scherm met de hoofden van alle creators. Je stemt op één persoon die volgens jou corrupted is.</p>
         </div>
         <div class="tile">
-          <h4>Events</h4>
-          <p>Elke zaterdagavond is er een event: van bouwwedstrijden tot een hide-and-seek in de stad.</p>
+          <h4>Doodgaan</h4>
+          <p>Ga je dood tijdens de SMP? Dan verlies je je eerstvolgende stem. Je speelt wel gewoon verder.</p>
         </div>
         <div class="tile">
-          <h4>De End blijft dicht</h4>
-          <p>De End gaat pas open als de hele server samen genoeg heeft verzameld. De voortgang zie je op spawn.</p>
+          <h4>Eruit gestemd</h4>
+          <p>Word je eruit gestemd, dan ben je echt dood en lig je eruit. Er is geen weg terug.</p>
         </div>
       </div>
 
-      <h3 class="sub">Regels</h3>
-      <ul class="rules">
-        <li><span>01</span>Niet griefen of stelen, ook niet "voor de grap".</li>
-        <li><span>02</span>Geen hacked clients, x-ray of dupe-glitches.</li>
-        <li><span>03</span>Bouw minimaal 200 blokken van iemand anders, tenzij je samen afspreekt.</li>
-        <li><span>04</span>Wees normaal in de chat. Schelden en spammen levert een mute op.</li>
-        <li><span>05</span>Farms die de server laten haperen worden weggehaald.</li>
-      </ul>
+      <h3 class="sub">De wereld</h3>
+      <div class="rules-grid">
+        <div class="tile">
+          <h4>Trial chambers</h4>
+          <p>Hier vind je de beste loot: sterke zwaarden, enchanted armor en enchanted golden apples. Ook blaze rods voor potions haal je hier.</p>
+        </div>
+        <div class="tile">
+          <h4>Events</h4>
+          <p>Elke week is er een event. Let goed op in de server, want daar vind je hints over wat er gaat komen.</p>
+        </div>
+      </div>
+
+      <div class="cta-rules">
+        <div>
+          <h3>De regels</h3>
+          <p>Alle regels en itemlimieten staan in een los document.</p>
+        </div>
+        <a class="btn" href="regels.html">Naar de regels</a>
+      </div>
     </div>
   </section>
 
@@ -167,7 +159,7 @@
 <footer class="foot">
   <div class="wrap foot-inner">
     <span>&copy; <span id="year">2026</span> Creator Corrupt</span>
-    <span class="foot-note">Niet verbonden aan Mojang of Microsoft.</span>
+    <span>Niet verbonden aan Mojang of Microsoft.</span>
   </div>
 </footer>
 
