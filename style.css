@@ -47,6 +47,10 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .nav{display:flex;gap:2px;align-items:center}
 .nav a{font:600 .95rem var(--body);text-decoration:none;color:var(--muted);padding:8px 12px}
 .nav a:hover{color:var(--ink)}
+.nav a:not(.nav-cta){position:relative}
+.nav a[aria-current="page"]:not(.nav-cta){color:var(--ink)}
+.nav a[aria-current="page"]:not(.nav-cta)::after{content:"";position:absolute;left:12px;right:12px;bottom:2px;height:2px;background:var(--purple-500);box-shadow:0 0 10px rgba(139,77,255,.8)}
+@media(max-width:800px){.nav a[aria-current="page"]:not(.nav-cta)::after{left:4px;right:auto;width:24px;bottom:6px}}
 .nav .nav-cta{color:#fff;margin-left:10px}
 .menu{display:none;font:600 1rem var(--body);background:none;color:var(--ink);border:1px solid var(--line-2);padding:6px 14px;cursor:pointer}
 @media(max-width:800px){
@@ -232,6 +236,25 @@ main>.section::before{content:"";position:absolute;left:0;right:0;top:-1px;heigh
 .cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:72px;padding:30px 32px;background:linear-gradient(90deg,rgba(91,42,166,.32),rgba(22,15,32,.85));border:1px solid var(--line-2)}
 .cta h3{font-size:1.45rem;text-transform:uppercase;margin-bottom:6px}
 .cta p{margin:0;color:var(--muted)}
+
+/* Concept-sectie op de voorpagina */
+#concept .section-head p strong{color:var(--ink)}
+#concept .nobody{margin-top:28px}
+
+/* Lees verder */
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.links{grid-template-columns:1fr}}
+.link-card{position:relative;display:block;padding:26px 26px 54px;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);transition:border-color .2s,transform .2s,box-shadow .2s}
+.link-card:hover{border-color:var(--purple-500);transform:translateY(-3px);box-shadow:0 0 30px rgba(139,77,255,.25)}
+.link-card h3{font-size:1.3rem;text-transform:uppercase;margin-bottom:8px}
+.link-card p{margin:0;color:var(--muted)}
+.link-arrow{position:absolute;left:26px;bottom:20px;font:700 1.2rem var(--body);color:var(--purple-300)}
+
+/* Vorige / volgende onderaan losse pagina's */
+.next{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line)}
+.page .steps a,.page .special a{color:var(--purple-300)}
+.page .special{margin-top:20px}
+.page .concept-note{margin-top:24px}
 
 /* Losse pagina's (regels, aanmelden) */
 .page{padding:96px 0 120px;min-height:calc(100vh - 67px - 86px);background:var(--panel)}
