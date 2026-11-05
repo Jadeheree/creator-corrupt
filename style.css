@@ -321,12 +321,18 @@ main>.section.more{padding:44px 0}
   .foot-grid{grid-template-columns:1fr 1fr;gap:22px 16px;padding:32px 0 24px}
   .foot-brand{grid-column:1/-1}
   .foot-brand p{margin-top:8px;font-size:.9rem}
-  .foot-person>span{font-size:.82rem;margin-bottom:10px}
-  .socials a{padding:5px 10px;font-size:.8rem}
+  .foot-grid{column-gap:12px}
+  .foot-person{padding:14px;background:rgba(22,15,32,.6);border:1px solid var(--line)}
+  .foot-person>span{font-size:.82rem;line-height:1.4;margin-bottom:12px}
+  .socials{gap:6px;flex-wrap:nowrap}
+  .socials a{flex:1 1 0;min-width:0;justify-content:center;padding:6px 4px;font-size:.8rem}
   .foot .foot-inner{flex-direction:row;font-size:.85rem}
 }
 footer.foot{padding-bottom:84px}
 .foot-brand p{margin:12px 0 0;max-width:34ch;color:var(--muted)}
+/* Organisatoren: knoppen altijd op dezelfde hoogte, ook als de tekst erboven langer is */
+.foot-person{display:flex;flex-direction:column}
+.foot-person .socials{margin-top:auto}
 .foot-person h4{font-size:1.05rem;text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px}
 .foot-person>span{display:block;font-size:.9rem;color:var(--muted);margin-bottom:12px}
 .socials{display:flex;gap:8px;flex-wrap:wrap}
