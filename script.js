@@ -196,7 +196,7 @@ document.querySelectorAll('.avatar[data-mc]').forEach(el => {
 
   const card = d => {
     const el = document.createElement('article');
-    el.className = 'cast-card reveal' + (d ? '' : ' mystery');
+    el.className = 'cast-card' + (d ? '' : ' mystery');
     const head = document.createElement('div');
     head.className = 'cast-head';
     const h3 = document.createElement('h3');
@@ -231,11 +231,51 @@ document.querySelectorAll('.avatar[data-mc]').forEach(el => {
     return el;
   };
 
-  if (list.length) list.forEach(d => cast.appendChild(card(d)));
-  else {
-    for (let i = 0; i < 12; i++) cast.appendChild(card(null));
-    document.getElementById('cast-note').hidden = false;
+  // 60 plekken: eerst de bekende deelnemers, de rest blijft een mysterie-kaart
+  const TOTAL = Math.max(60, list.length), PER = 20;
+  const cards = Array.from({ length: TOTAL }, (_, i) => card(list[i] || null));
+  const pages = Math.ceil(TOTAL / PER);
+  const count = document.getElementById('cast-count');
+  const pagers = [document.getElementById('pager-top'), document.getElementById('pager-bottom')];
+  if (list.length < TOTAL) document.getElementById('cast-note').hidden = false;
+
+  const fromHash = () => { const m = location.hash.match(/pagina-(\d+)/); const n = m ? +m[1] : 1; return Math.min(Math.max(n, 1), pages); };
+  let current = 0;
+
+  function show(n, scroll) {
+    if (n === current) return;
+    current = n;
+    const start = (n - 1) * PER, end = Math.min(start + PER, TOTAL);
+    cast.classList.remove('switch');
+    void cast.offsetWidth; // animatie opnieuw starten
+    cast.replaceChildren(...cards.slice(start, end).map((c, i) => { c.style.setProperty('--i', i); return c; }));
+    cast.classList.add('switch');
+    count.textContent = `Creators ${start + 1}–${end} van ${TOTAL}`;
+    pagers.forEach(p => p.querySelectorAll('button').forEach(b => {
+      const t = b.dataset.page;
+      if (t === 'prev') b.disabled = n === 1;
+      else if (t === 'next') b.disabled = n === pages;
+      else b.setAttribute('aria-current', +t === n ? 'page' : 'false');
+    }));
+    history.replaceState(null, '', n === 1 ? location.pathname : `#pagina-${n}`);
+    if (scroll) document.querySelector('.cast-bar').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }
+
+  pagers.forEach((p, pi) => {
+    const mk = (label, page, aria) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = label; b.dataset.page = page;
+      if (aria) b.setAttribute('aria-label', aria);
+      b.addEventListener('click', () => show(page === 'prev' ? current - 1 : page === 'next' ? current + 1 : +page, pi === 1));
+      return b;
+    };
+    p.append(mk('←', 'prev', 'Vorige pagina'));
+    for (let i = 1; i <= pages; i++) p.append(mk(String(i), String(i), `Pagina ${i}`));
+    p.append(mk('→', 'next', 'Volgende pagina'));
+  });
+
+  show(fromHash(), false);
+  addEventListener('hashchange', () => show(fromHash(), false));
 })();
 
 // Elementen met .reveal komen zacht in beeld bij het scrollen (met een klein verschil per kaart)

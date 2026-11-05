@@ -313,6 +313,23 @@ main>.section.more{padding:44px 0}
 .cast-card.mystery:hover .cast-head{animation:wobble .5s ease}
 @keyframes mysteryPulse{0%,100%{box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 0 3px rgba(139,77,255,.2)}50%{box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 0 3px rgba(139,77,255,.55),0 0 24px rgba(139,77,255,.45)}}
 .cast-note{margin:28px 0 0;color:var(--muted)}
+
+/* Pagina's met 20 creators */
+.cast-bar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:22px;scroll-margin-top:90px}
+.cast-count{margin:0;font:600 .85rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--purple-300)}
+.pager{display:flex;gap:6px}
+.pager-bottom{justify-content:center;margin-top:28px}
+.pager button{min-width:42px;height:42px;padding:0 12px;font:700 .95rem var(--body);color:var(--text);cursor:pointer;background:rgba(22,15,32,.8);border:1px solid var(--line-2);
+  transition:color .2s,background .2s,border-color .2s,box-shadow .2s,transform .15s}
+.pager button:hover:not(:disabled){color:var(--ink);border-color:var(--purple-500);transform:translateY(-2px)}
+.pager button[aria-current="page"]{color:#fff;background:var(--purple-700);border:1px solid #000;box-shadow:inset 2px 2px 0 rgba(255,255,255,.2),inset -2px -2px 0 rgba(0,0,0,.4),0 0 18px rgba(139,77,255,.45)}
+.pager button:disabled{opacity:.35;cursor:default}
+@media(max-width:560px){.cast-bar{flex-direction:column;align-items:flex-start}}
+
+/* Kaarten springen er één voor één in bij het wisselen van pagina */
+.cast.switch .cast-card{animation:popIn .45s cubic-bezier(.2,.9,.3,1.2) backwards;animation-delay:calc(var(--i,0) * 35ms)}
+@keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.cast.switch .cast-card{animation:none}}
 @media(prefers-reduced-motion:reduce){.cast-card.mystery .cast-head,.cast-card:hover .cast-head{animation:none}}
 
 /* Footer met organisatoren */
