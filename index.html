@@ -4,20 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Creator Corrupt</title>
-<meta name="description" content="Creator Corrupt is een Minecraft Java SMP voor creators. Een paar spelers zijn in het geheim corrupt. Wie stem jij eruit?">
+<meta name="description" content="Creator Corrupt is een Minecraft Java SMP-event van drie weken voor 60 creators. Een paar spelers zijn in het geheim corrupted. Wie stem jij eruit?">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=IBM+Plex+Mono:wght@600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="cave" aria-hidden="true"></canvas>
+<canvas id="sparks" aria-hidden="true"></canvas>
 
 <header class="top">
   <div class="wrap bar">
-    <a href="#top" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+    <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
     <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav id="nav" class="nav">
-      <a href="index.html#intro">Introductie</a>
+      <a href="index.html#video">Uitleg</a>
       <a href="index.html#team">Team</a>
       <a href="index.html#uitleg">Speluitleg</a>
       <a href="regels.html">Regels</a>
@@ -30,39 +32,36 @@
 
   <!-- INTRODUCTIE -->
   <section id="intro" class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <p class="kicker">Minecraft Java Edition &middot; SMP voor creators</p>
-        <h1>Wie van jullie is corrupt?</h1>
-        <p class="lead">Creator Corrupt is een SMP-event van drie weken waarin een paar creators in het geheim <strong>corrupted</strong> zijn. Niemand weet wie. Je bouwt, overleeft en speelt events, en elke stemronde kiezen jullie samen wie eruit moet. Kies goed, want wie eruit wordt gestemd, is er echt uit.</p>
-        <div class="hero-actions">
-          <a class="btn" href="aanmelden.html">Aanmelden</a>
-          <div class="ip">
-            <span class="ip-label">Server IP</span>
-            <span class="ip-value">Volgt binnenkort</span>
-          </div>
-        </div>
-      </div>
+    <div class="wrap hero-inner">
       <div class="hero-logo">
         <img src="img/logo.png" alt="Creator Corrupt" width="362" height="190">
         <div class="logo-shadow" aria-hidden="true"></div>
+      </div>
+      <p class="eyebrow">Minecraft Java Edition &middot; 3 weken &middot; 60 creators</p>
+      <h1>Wie van jullie is corrupt?</h1>
+      <p class="lead">Een paar creators zijn in het geheim <strong>corrupted</strong>. Niemand weet wie. Je bouwt, overleeft en speelt events, en elke stemronde kiezen jullie samen wie eruit moet. Wie eruit wordt gestemd, is er echt uit.</p>
+      <div class="hero-actions">
+        <a class="btn" href="aanmelden.html">Aanmelden</a>
+        <a class="btn btn-ghost" href="#video">Bekijk de uitleg</a>
       </div>
     </div>
 
     <div class="wrap">
       <ul class="stats">
         <li><strong>Java</strong><span>Alleen Java Edition</span></li>
-        <li><strong>14:00 &ndash; 02:00</strong><span>Openingstijden</span></li>
-        <li><strong>Max. 40</strong><span>Creators</span></li>
-        <li><strong>3 weken</strong><span>Zo lang duurt het event</span></li>
+        <li><strong>14:00&ndash;02:00</strong><span>Openingstijden</span></li>
+        <li><strong>60</strong><span>Creators</span></li>
+        <li><strong>3 weken</strong><span>Duur van het event</span></li>
+        <li><strong>Volgt</strong><span>Server IP</span></li>
       </ul>
     </div>
   </section>
 
   <!-- UITLEGVIDEO -->
-  <section id="video" class="section video-section">
+  <section id="video" class="section">
     <div class="wrap">
       <header class="section-head">
+        <p class="eyebrow">01 &mdash; Uitleg</p>
         <h2>Uitlegvideo</h2>
         <p>Liever kijken dan lezen? In deze video leggen we uit hoe Creator Corrupt werkt.</p>
       </header>
@@ -82,62 +81,57 @@
   <section id="team" class="section">
     <div class="wrap">
       <header class="section-head">
-        <h2>Het team</h2>
+        <p class="eyebrow">02 &mdash; Team</p>
+        <h2>De organisatie</h2>
         <p>Creator Corrupt wordt georganiseerd door Jade en Bintje.</p>
       </header>
 
       <!-- Vul bij data-mc de Minecraft-gebruikersnaam in, dan verschijnt automatisch de skin. -->
-      <div class="team team-duo">
-        <article class="member">
-          <div class="avatar" data-mc="" data-name="Jade"></div>
-          <div class="member-body">
-            <span class="role role-owner">Organisatie</span>
-            <h3>Jade</h3>
-            <a class="twitch" href="https://www.twitch.tv/jadeheree" target="_blank" rel="noopener">twitch.tv/jadeheree</a>
-          </div>
-        </article>
-        <article class="member">
-          <div class="avatar" data-mc="" data-name="Bintje"></div>
-          <div class="member-body">
-            <span class="role role-owner">Organisatie</span>
-            <h3>Bintje</h3>
-            <a class="twitch" href="https://www.twitch.tv/bintje__" target="_blank" rel="noopener">twitch.tv/bintje__</a>
-          </div>
-        </article>
+      <div class="team">
+        <a class="member" href="https://www.twitch.tv/jadeheree" target="_blank" rel="noopener">
+          <div class="frame"><div class="avatar" data-mc="" data-name="Jade"></div></div>
+          <span class="plaque"><span>JADEHEREE</span></span>
+          <span class="member-role">Organisatie &middot; Twitch</span>
+        </a>
+        <a class="member" href="https://www.twitch.tv/bintje__" target="_blank" rel="noopener">
+          <div class="frame"><div class="avatar" data-mc="" data-name="Bintje"></div></div>
+          <span class="plaque"><span>BINTJE__</span></span>
+          <span class="member-role">Organisatie &middot; Twitch</span>
+        </a>
       </div>
     </div>
   </section>
 
   <!-- SPELUITLEG -->
-  <section id="uitleg" class="section section-alt">
+  <section id="uitleg" class="section">
     <div class="wrap">
       <header class="section-head">
-        <h2>Speluitleg</h2>
-        <p>Zo werkt Creator Corrupt, van de eerste dag tot de finale na drie weken.</p>
+        <p class="eyebrow">03 &mdash; Speluitleg</p>
+        <h2>Hoe het werkt</h2>
+        <p>Van de eerste avond tot de finale na drie weken.</p>
       </header>
 
-      <h3 class="sub">Hoe de drie weken verlopen</h3>
       <ol class="steps">
         <li>
-          <h4>De start</h4>
+          <h3>De start</h3>
           <p>We beginnen op een zaterdagavond en spelen door tot de server sluit. Daarna gelden de vaste openingstijden van 14:00 tot 02:00.</p>
         </li>
         <li>
-          <h4>Overleven en bouwen</h4>
+          <h3>Overleven en bouwen</h3>
           <p>Iedereen spawnt op een eigen, willekeurige plek op één groot eiland met alle biomes. Vanaf daar bouw je je basis op.</p>
         </li>
         <li>
-          <h4>Stemrondes</h4>
+          <h3>Stemrondes</h3>
           <p>Om de drie dagen wordt er gestemd en gaan er drie creators uit. Elke week is er een event.</p>
         </li>
         <li>
-          <h4>De finale</h4>
+          <h3>De finale</h3>
           <p>Wie overblijft speelt de finale. Hoe die werkt, hoor je pas als je er bent.</p>
         </li>
       </ol>
 
       <h3 class="sub">Corrupted en stemmen</h3>
-      <div class="rules-grid">
+      <div class="tiles">
         <div class="tile">
           <h4>Corrupted</h4>
           <p>Een paar creators zijn in het geheim corrupted. Je rol is geheim: je vertelt hem aan niemand, ook niet op stream.</p>
@@ -157,7 +151,7 @@
       </div>
 
       <h3 class="sub">De wereld</h3>
-      <div class="rules-grid">
+      <div class="tiles tiles-2">
         <div class="tile">
           <h4>Trial chambers</h4>
           <p>Hier vind je de beste loot: sterke zwaarden, enchanted armor en enchanted golden apples. Ook blaze rods voor potions haal je hier.</p>
@@ -168,7 +162,7 @@
         </div>
       </div>
 
-      <div class="cta-rules">
+      <div class="cta">
         <div>
           <h3>Regels en voorwaarden</h3>
           <p>Alle regels, itemlimieten en voorwaarden om mee te doen staan in een los document.</p>
