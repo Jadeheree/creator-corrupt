@@ -83,3 +83,36 @@ nav.addEventListener('click', e => {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// Aanmeldformulier: controleert de velden en verstuurt naar data-endpoint (als die is ingevuld)
+const form = document.getElementById('aanmelden');
+if (form) {
+  const msg = form.querySelector('.form-msg');
+  const show = (text, error) => { msg.textContent = text; msg.classList.toggle('error', !!error); msg.hidden = false; };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const fields = [...form.querySelectorAll('input')];
+    fields.forEach(f => f.classList.toggle('invalid', !f.checkValidity()));
+    const firstBad = fields.find(f => !f.checkValidity());
+    if (firstBad) { show('Vul alle verplichte velden goed in.', true); firstBad.focus(); return; }
+
+    const endpoint = form.dataset.endpoint.trim();
+    if (!endpoint) { show('Aanmelden is nog niet geopend. Je aanmelding is niet verstuurd.'); return; }
+
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    try {
+      const res = await fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error();
+      form.reset();
+      show('Bedankt! Je aanmelding is binnen. We nemen contact met je op via Discord.');
+    } catch {
+      show('Versturen lukte niet. Probeer het later opnieuw.', true);
+    } finally {
+      btn.disabled = false;
+    }
+  });
+
+  form.addEventListener('input', e => e.target.classList.remove('invalid'));
+}

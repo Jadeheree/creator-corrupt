@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aanmelden - Creator Corrupt</title>
+<meta name="description" content="Meld je aan als creator voor Creator Corrupt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap bar">
+    <a href="index.html" class="brand"><span class="brand-block" aria-hidden="true"></span>Creator <b>Corrupt</b></a>
+    <button class="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" class="nav">
+      <a href="index.html#intro">Introductie</a>
+      <a href="index.html#team">Team</a>
+      <a href="index.html#uitleg">Speluitleg</a>
+      <a href="regels.html">Regels</a>
+      <a href="aanmelden.html" class="nav-cta">Aanmelden</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="wrap">
+    <header class="section-head">
+      <h2>Aanmelden</h2>
+      <p>Wil je meedoen als creator? Vul het formulier in. Je hoort van ons via Discord.</p>
+    </header>
+
+    <!--
+      Versturen staat nog uit. Zet bij data-endpoint de link van je formulierdienst
+      (bijvoorbeeld https://formspree.io/f/xxxxxxx), dan worden aanmeldingen verstuurd.
+    -->
+    <form class="form" id="aanmelden" data-endpoint="" novalidate>
+      <label class="field">
+        <span>Naam</span>
+        <input type="text" name="naam" autocomplete="name" required>
+      </label>
+
+      <label class="field">
+        <span>Minecraft Java-naam</span>
+        <input type="text" name="minecraft" autocomplete="off" required>
+      </label>
+
+      <label class="field">
+        <span>Discord-naam</span>
+        <input type="text" name="discord" autocomplete="off" required>
+      </label>
+
+      <label class="field">
+        <span>E-mailadres</span>
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+
+      <label class="field">
+        <span>Link naar je kanaal <small>Twitch, YouTube of TikTok</small></span>
+        <input type="url" name="kanaal" placeholder="https://www.twitch.tv/..." required>
+      </label>
+
+      <fieldset class="checks">
+        <label class="check"><input type="checkbox" name="microfoon" value="ja" required> Ik heb een verstaanbare microfoon</label>
+        <label class="check"><input type="checkbox" name="camera" value="ja"> Ik heb een camera <small>(niet verplicht)</small></label>
+        <label class="check"><input type="checkbox" name="regels" value="akkoord" required> Ik heb de <a href="regels.html">regels</a> gelezen en ga akkoord</label>
+      </fieldset>
+
+      <p class="form-msg" role="status" hidden></p>
+
+      <button class="btn" type="submit">Aanmelding versturen</button>
+    </form>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>&copy; <span id="year">2026</span> Creator Corrupt</span>
+    <span>Niet verbonden aan Mojang of Microsoft.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
