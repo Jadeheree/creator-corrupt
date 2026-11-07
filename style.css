@@ -92,7 +92,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .eyebrow{font:600 .85rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--purple-300);margin:0 0 14px}
 
 /* Hero: gecentreerd, zoals de poster */
-.hero{padding:64px 0 0;text-align:center;overflow:hidden}
+.hero{padding:64px 0 80px;text-align:center;overflow:hidden}
 .hero-inner{display:flex;flex-direction:column;align-items:center}
 .hero-logo{position:relative;display:grid;place-items:center;padding:8px 0 36px}
 .hero-logo::before{content:"";position:absolute;inset:-10% -25%;background:radial-gradient(closest-side,rgba(139,77,255,.38),transparent);pointer-events:none}
@@ -405,6 +405,18 @@ main>.section.more{padding:44px 0}
 #tl-msg{margin-top:16px}
 .community{margin-top:80px;padding-top:56px;border-top:1px solid var(--line)}
 .community-empty{padding:22px;color:var(--muted);background:rgba(14,9,22,.7);border:1px dashed var(--line-2)}
+
+/* Hoe werkt het?: inhoudsopgave en blokken */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 32px}
+.toc a{padding:7px 14px;font:600 .9rem var(--body);color:var(--text);text-decoration:none;background:rgba(22,15,32,.7);border:1px solid var(--line);transition:color .2s,border-color .2s,background .2s}
+.toc a:hover{color:var(--ink);border-color:var(--purple-500);background:rgba(91,42,166,.22)}
+.howto-intro .stats{margin-top:0}
+.tiles-3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.tiles-3{grid-template-columns:1fr}}
+#concept .nobody{margin-top:28px}
+#regels .concept-note{margin-top:24px}
+#regels .cta{margin-top:0}
+.steps a{color:var(--purple-300)}
 
 /* Uitlijning: kleine correcties */
 /* Hero-label: de drie stukjes breken als geheel af, met een punt ertussen */
