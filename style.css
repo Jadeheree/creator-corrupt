@@ -43,7 +43,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .bar{display:flex;align-items:center;justify-content:space-between;height:66px;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font:900 1.05rem var(--head);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-decoration:none}
 .brand b{color:var(--purple-300);font-weight:900}
-.brand-block{width:20px;height:20px;background:var(--purple-500);box-shadow:inset 3px 3px 0 var(--purple-300),inset -3px -3px 0 var(--purple-900),0 0 14px rgba(139,77,255,.6)}
+.brand-icon{width:34px;height:34px;flex:none;object-fit:contain;filter:drop-shadow(0 0 8px rgba(139,77,255,.55));transition:transform .25s}
+.brand:hover .brand-icon{transform:rotate(-6deg) scale(1.08)}
 .nav{display:flex;gap:2px;align-items:center}
 .nav a{font:600 .95rem var(--body);text-decoration:none;color:var(--muted);padding:8px 12px}
 .nav a:hover{color:var(--ink)}

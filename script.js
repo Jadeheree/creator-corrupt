@@ -408,7 +408,7 @@ nav.addEventListener('click', e => {
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Pop-ups met grapjes over het creator-leven en corrupted zijn, met een geanimeerd pixelpoppetje.
-// Alleen op de voorpagina. Eerst na 20 seconden, daarna af en toe, maximaal 4 per bezoek.
+// Op elke pagina. Eerst na 20 seconden, daarna af en toe; maximaal 4 per pagina en 8 per bezoek.
 const jokes = [
   { type: 'creator', text: "Je zegt al twintig minuten 'nog één ronde'. Chat gelooft je niet meer." },
   { type: 'creator', text: 'Volgersdoel: 100. Huidige stand: 97. Twee daarvan zijn je eigen alts.' },
@@ -483,8 +483,13 @@ function sprite(canvas, mode) {
 }
 
 function startPopups() {
-  if (!document.querySelector('.hero')) return;
   try { if (localStorage.getItem('cc-popups-off') === '1') return; } catch {}
+
+  // Op elke pagina, maar samen maximaal 8 per bezoek, zodat het bij het rondklikken niet te veel wordt
+  const SESSION_MAX = 8;
+  const sessionCount = () => { try { return +sessionStorage.getItem('cc-popups-count') || 0; } catch { return 0; } };
+  const countOne = () => { try { sessionStorage.setItem('cc-popups-count', sessionCount() + 1); } catch {} };
+  if (sessionCount() >= SESSION_MAX) return;
 
   const order = jokes.slice().sort(() => Math.random() - 0.5);
   let shown = 0, stop = null, hideTimer = null, nextTimer = null;
@@ -502,11 +507,13 @@ function startPopups() {
     clearTimeout(hideTimer);
     setTimeout(() => { if (stop) { stop(); stop = null; } }, 500);
   };
-  const schedule = delay => { clearTimeout(nextTimer); if (shown < 4) nextTimer = setTimeout(show, delay); };
+  const schedule = delay => { clearTimeout(nextTimer); if (shown < 4 && sessionCount() < SESSION_MAX) nextTimer = setTimeout(show, delay); };
 
   function show() {
+    if (sessionCount() >= SESSION_MAX) return;
     const j = order[shown % order.length];
     shown++;
+    countOne();
     const corrupt = j.type === 'corrupt';
     toast.classList.toggle('corrupt', corrupt);
     toast.querySelector('.toast-label').textContent = corrupt ? 'Corruption-melding' : 'Creator-leven';
